@@ -63,7 +63,7 @@ public class TeamCrud {
     @Autowired
     DBLogServiceImpl dbLogService;
 
-    int CURRENT_SEASON_YEAR = 2020;
+    int CURRENT_SEASON_YEAR = 2021;
 
     @PostMapping("/ui/users/authenticate")
     @ApiResponses({
