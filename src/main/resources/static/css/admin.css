@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("/images/admin-back.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+#ads {
+    margin: 30px 0 30px 0;
+}
+
+#ads .card-notify-badge {
+        position: absolute;
+        left: -10px;
+        top: -20px;
+        background: #f2d900;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+#ads .card-notify-year {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        background: #ff4444;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        width: 50px;
+        height: 50px;
+        padding: 15px 0 0 0;
+        cursor: pointer;
+}
+
+#ads .card-detail-badge {
+        background: #f2d900;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+#ads .card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+#ads .card-image-overlay {
+        font-size: 20px;
+    }
+
+#ads .card-image-overlay span {
+            display: inline-block;
+        }
+
+#ads .ad-btn1 {
+        text-transform: uppercase;
+        width: 150px;
+        height: 40px;
+        border-radius: 80px;
+        font-size: 10px;
+        line-height: 35px;
+        text-align: center;
+        border: 3px solid #e6de08;
+        display: block;
+        text-decoration: none;
+        margin: 20px auto 1px auto;
+        color: #000;
+        overflow: hidden;
+        position: relative;
+        background-color: #e6de08;
+    }
+
+#ads .ad-btn1:hover {
+            background-color: #e6de08;
+            color: #1e1717;
+            border: 2px solid #e6de08;
+            background: transparent;
+            transition: all 0.3s ease;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+        }
+
+#ads .ad-title1 h5 {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+.table_dark {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  width: 640px;
+  text-align: left;
+  border-collapse: collapse;
+ background: #252F48;
+ margin: auto;
+}
+.table_dark th {
+  color: #EDB749;
+   border-left:1px solid #37B5A5;
+    border-right:1px solid #37B5A5;
+    border-top: 1px solid #37B5A5;
+  border-bottom: 1px solid #37B5A5;
+  padding: 12px 17px;
+}
+.table_dark td {
+  color: #CAD4D6;
+  border-left:1px solid #37B5A5;
+  border-top: 1px solid #37B5A5;
+  border-right:1px solid #37B5A5;
+  padding: 7px 17px;
+}
+.table_dark tr:last-child td {
+  border-bottom: 1px solid #37B5A5;
+}
+.table_dark td:last-child {
+  border-right: 1px solid #37B5A5;
+}
+.table_dark tr:hover td {
+ // text-decoration: underline;
+}
+
+.masterListGoals{
+width: 100%;
+}
+.slaveListGoals{
+width: 100%;
+}
+
+.masterListYellowCards{
+width: 100%;
+}
+.slaveListYellowCards{
+width: 100%;
+}
+
+.masterListRedCards{
+width: 100%;
+}
+.slaveListRedCards{
+width: 100%;
+}
+
+ .LockOff {
+    display: none;
+    visibility: hidden;
+               }
+.LockOn {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 105%;
+    height: 105%;
+    background-color: #ccc;
+    text-align: center;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+}
+
+#p_prldr{
+position: fixed;
+left: 0;
+top: 0;
+right:0;
+bottom:0;
+background: #9A12B3;
+z-index: 30;}
+
+.contpre small{font-size:25px;}
+
+.contpre{
+width: 250px;
+height: 100px;
+position: absolute;
+left: 50%;top: 48%;
+margin-left:-125px;
+margin-top:-75px;
+color:#fff;
+font-size:40px;
+letter-spacing:-2px;
+text-align:center;
+line-height:35px;}
+
+#p_prldr .svg_anm {
+position: absolute;
+width: 81px;
+height: 81px;
+background: url("../images/logo.png") center center no-repeat;
+background-size:81px;
+margin: -56px 0 0 -36px;}
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}

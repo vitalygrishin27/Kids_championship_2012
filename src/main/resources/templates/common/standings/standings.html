@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<title th:utext="#{label.stangings}"></title>
+<th:block th:include="common/common"></th:block>
+<body>
+<th:block th:include="common/_menu"></th:block>
+<div th:insert="common/message :: message"></div>
+<div>
+    <table class="table_dark">
+        <tr>
+            <td colspan="9">
+                <div style="text-align:center;">
+                    <a class="btn btn-lg btn-success active" th:text="#{label.stangings}"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.number}"/>
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.teamNames}"/>
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.games}"/>
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.wins}" />
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.draws}"/>
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.loses}" />
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.ratio}"/>
+            </th>
+            <th>
+                <label class="input--style-3" th:text="#{standingRow.label.points}"/>
+            </th>
+        </tr>
+
+
+        <tr th:each="standingRow, custStat: ${standings}">
+            <td th:text="${custStat.count}" style="font-size: 15pt; font-weight: 600;" />
+            <td>
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.teamName}" style="font-size: 15pt; font-weight: 600;"/>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.games}" style="font-size: 15pt; font-weight: 600;"/>
+                </div>
+            </td>
+            <td style="background: #328734; text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.wins}" style="font-size: 15pt; font-weight: 600;"/>
+                </div>
+            </td>
+            <td style="background: #e3d432; text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.draws}" style="font-size: 15pt; color: #252F48; font-weight: 600;"/>
+                </div>
+            </td>
+            <td style="background: #9e1616;text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.losses}" style="font-size: 15pt; font-weight: 600;"/>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.stringRatioGoals}"/>
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div>
+                    <label class="input--style-3" th:text="${standingRow.points}" style="font-size: 19pt; font-weight: 600;"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/ $(document).ready(function () {loadMessage( /*[[${message}]]*/); });/*]]>*/
+</script>
+</body>
+</html>

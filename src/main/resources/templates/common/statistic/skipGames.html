@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="skipGames">
+    <table class="table_dark">
+        <tr th:each="instance : ${skipGames}">
+            <td style="padding: 2px;">
+
+                    <div  style="font-size: 25px; text-align:center;">
+                        <label class="input--style-3"
+                               th:text="${instance.player.lastName+' '+instance.player.firstName}"/>
+                    </div>
+
+            </td>
+            <td style="padding: 2px;">
+
+                    <div  style="font-size: 15px; text-align:center;">
+                        <label class="input--style-3" th:text="${instance.player.team.teamName}"/>
+                    </div>
+
+            </td>
+            <td style="padding: 2px;">
+                <nav class="navbar">
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;  font-size: 20px; text-align:center;"
+                       th:text="${instance.stringDate}"/>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div style="margin: 20px;">
+                            <label class="input--style-3" th:text="${instance.details}"/>
+                        </div>
+                    </div>
+                </nav>
+            </td>
+        </tr>
+    </table>
+    <a th:if="${needShowAllSkipGames}" style="width:100%" onclick="getAllSkipGames()" class="btn btn-white btn-lg"
+       th:text="#{label.showAll}"/>
+    <a th:if="${!needShowAllSkipGames}" style="width:100%" onclick="getLastTourSkipGames()" class="btn btn-white btn-lg"
+       th:text="#{label.showFirst}"/>
+    <br/>
+    <a th:if="${#request.userPrincipal != null and #request.userPrincipal.getAuthorities().iterator().next().getAuthority() == 'ADMINISTRATOR'}"
+       style="width:100%"  class="btn btn-white btn-lg" th:text="#{label.listSkipGamesManual}" th:href="|/administration/listSkipGames|"/>
+</div>
+<script th:inline="javascript">
+function getLastTourSkipGames() {
+    $.ajax({
+    type: 'GET',
+    data: ({
+        show: 'lastTour'
+        }),
+    url: "/skipGames",
+    success: function(html) {
+    $("#skipGames").html(html);
+    }
+    });
+}
+function getAllSkipGames() {
+    $.ajax({
+        type: 'GET',
+        data: ({
+         show: 'all'
+        }),
+        url: "/skipGames",
+        success: function(html) {
+    $("#skipGames").html(html);
+    }
+    });
+}
+
+</script>
+</html>

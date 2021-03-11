@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="common/common"></th:block>
+<div id="p_prldr"><div class="contpre"><span class="svg_anm"></span><br>Подождите<br><small>идет загрузка</small></div></div>
+<div id="mainInfo">
+
+</div>
+<script th:inline="javascript">
+/*<![CDATA[*/
+$(document).ready(function () {
+setInterval( tryToStart, 5 * 1000 );
+});
+/*]]>*/
+
+function tryToStart(){
+location.href = '/';
+}
+</script>
+<!--
+var isStatisticReady = /*[[${isStatisticReady}]]*/ ;
+alert(isStatisticReady);-->
+</html>
+

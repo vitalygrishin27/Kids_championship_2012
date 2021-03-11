@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="fifthStep">
+    <table class="table_dark">
+        <tr>
+            <td colspan="2">
+                <div style="display: inline-block; text-align:center; color:#ffff00;" class="input-group"
+                     th:text="#{label.playersWithYellowCards}"/>
+            </td>
+        </tr>
+        <tr>
+            <td id="masterListYellowCards" width="50%"></td>
+            <td id="slaveListYellowCards"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="p-t-10" style="text-align:center;">
+                    <a class="btn btn-lg btn-success active" th:text="#{button.continue}" th:onClick="getFifthStep()"/>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script th:inline="javascript">
+function getFifthStep() {
+var masterPlayers = document.getElementsByClassName('masterListYellowCards');
+var slavePlayers = document.getElementsByClassName('slaveListYellowCards');
+var masterPlayerIdListYellowCards = [];
+var slavePlayerIdListYellowCards = new Array();
+
+$(masterPlayers).each(function(s){
+masterPlayerIdListYellowCards.push($(this).val());
+});
+
+$(slavePlayers).each(function(s){
+slavePlayerIdListYellowCards.push($(this).val());
+});
+    $.ajax({
+        type: 'POST',
+        url: "/administration/resultGame",
+        data: ({
+            step: 'yellowCardsPlayers',
+            masterPlayerIdListYellowCards:masterPlayerIdListYellowCards,
+            slavePlayerIdListYellowCards:slavePlayerIdListYellowCards
+        }),
+        cache: false,
+        success: function(html) {
+            $("#fifthStep").html(html);
+        }
+    });
+}
+
+/*<![CDATA[*/
+$(document).ready(function () {
+	var masterListYellowCards = document.getElementById('masterListYellowCards');
+	var slaveListYellowCards = document.getElementById('slaveListYellowCards');
+	var masterTeamPlayers = /*[[${masterTeamPlayersMap}]]*/ ;
+	var slaveTeamPlayers = /*[[${slaveTeamPlayersMap}]]*/ ;
+
+	for (var i = 0; i < /*[[${countYellowCardsMasterTeam}]]*/ ; i++) {
+		var s = document.createElement("select");
+		s.className="masterListYellowCards";
+		$.each(masterTeamPlayers, function (key, value) {
+			var o = document.createElement("option");
+			o.value = key;
+			o.text = value;
+			s.appendChild(o);
+			sort(s);
+		});
+		masterListYellowCards.appendChild(s);
+		if (i+1</*[[${countYellowCardsMasterTeam}]]*/){
+		 masterListYellowCards.innerHTML += "<br/><br/>";
+		 }
+	}
+
+    for (var i = 0; i < /*[[${countYellowCardsSlaveTeam}]]*/ ; i++) {
+		var s = document.createElement("select");
+		s.className="slaveListYellowCards";
+		$.each(slaveTeamPlayers, function (key, value) {
+			var o = document.createElement("option");
+			o.value = key;
+			o.text = value;
+			s.appendChild(o);
+			sort(s);
+		});
+		slaveListYellowCards.appendChild(s);
+		if (i+1</*[[${countYellowCardsSlaveTeam}]]*/){
+		 slaveListYellowCards.innerHTML += "<br/><br/>";
+		 }
+	}
+});
+/*]]>*/
+
+</script>
+</html>
