@@ -933,6 +933,7 @@ public class TeamCrud {
         response.setContentType("application/vnd.ms-excel");
         String filename = Transliterator.getInstance("Russian-Latin/BGN").transliterate("Шахтер-Легион");
         response.setHeader("Content-Disposition", "attachment; filename=" + filename + ".xls");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         out.write(byteArray);
         out.flush();
         out.close();
