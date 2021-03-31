@@ -9,6 +9,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -20,6 +21,8 @@ public class POIService {
     private HSSFWorkbook workbook;
     private Map<String, CellStyle> cellStyleMap = new HashMap<>();
     private HSSFSheet sheet;
+    @Autowired
+    private PlayerService playerService;
 
     public void fillInReport(Game game) throws IOException {
         // Создать новый документ
@@ -29,8 +32,8 @@ public class POIService {
         sheet = workbook.getSheetAt(0);
         fillInTeamTitle(game.getMasterTeam().getTeamName(), "B");
         fillInTeamTitle(game.getSlaveTeam().getTeamName(), "I");
-        fillInTeamPlayers(game.getMasterTeam().getPlayers(), "B");
-        fillInTeamPlayers(game.getSlaveTeam().getPlayers(), "H");
+        fillInTeamPlayers(playerService.findAllActivePlayersInTeam(game.getMasterTeam()), "B");
+        fillInTeamPlayers(playerService.findAllActivePlayersInTeam(game.getSlaveTeam()), "H");
         fillInDate(game.getDate());
         if (game.isResultSave()) {
             fillInGoalsCount(game.getMasterGoalsCount(), "E9");
@@ -54,7 +57,7 @@ public class POIService {
     private void fillInTeamPlayers(Collection<Player> source, String columnName) {
         ArrayList<Player> list = new ArrayList<>(source);
         Collections.sort(list);
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < (Math.min(list.size(), 18)); i++) {
             CellReference cr = new CellReference(columnName + (i + 13));
             Row row = sheet.getRow(cr.getRow());
             Cell cell = row.getCell(cr.getCol());
@@ -62,6 +65,7 @@ public class POIService {
             //  cell.setCellValue((double) (i + 1));
             cell = row.getCell(cr.getCol() + 1);
             cell.setCellValue(list.get(i).getLastName() + " " + list.get(i).getFirstName());
+            cell.setCellValue(i < 17 ? list.get(i).getLastName() + " " + list.get(i).getFirstName() : list.get(i).getLastName() + " " + list.get(i).getFirstName() + " +" + (list.size() - 18));
         }
     }
 
